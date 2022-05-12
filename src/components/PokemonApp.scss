@@ -27,27 +27,6 @@ $color-black: #000;
 // FONT
 $default-font-size: 1.6rem;
 
-*,
-*::after,
-*::before {
-  margin: 0;
-  padding: 0;
-  box-sizing: inherit;
-}
-
-body {
-  box-sizing: border-box;
-  background: linear-gradient(to bottom left, rgb(12, 100, 66), black) no-repeat
-    center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  display: flex;
-  text-align: center;
-  flex-direction: column;
-}
-
 .container {
   background-image: linear-gradient(
       to right bottom,
@@ -59,25 +38,40 @@ body {
   flex-direction: column;
   text-align: left;
 
-  // margin: 5%;
-  // padding: 5%;
-  min-height: 100vh;
+  min-height: 90vh;
 
   .search {
-    padding: 50px;
+    padding: 5rem;
 
-    .search__poke {
-      height: 20vh;
+    &__poke {
+      // padding: 0;
+      height: 30rem;
+      &__description {
+        font-size: 5rem;
+        list-style: none;
+      }
+      &__header {
+        font-size: 5rem;
+      }
     }
   }
 }
 
-.show {
-  font-weight: 700;
+.pokedex_pokemon {
+  display: flex;
+  justify-content: center;
+  min-height: 50vh;
+  // transform: scale(1);
+}
+
+.show_pokemon {
+  display: flex;
+  justify-content: center;
+  flex-direction: column-reverse;
 }
 
 .abilitiDescription {
-  max-width: 70%;
+  max-width: 100%;
   // font-size: 15px;
   display: block;
 }
@@ -86,9 +80,10 @@ body {
 }
 .description {
   // border: solid black 5px;
-  max-width: 75%;
+  max-width: 70%;
   text-align: center;
-  font-size: 50px;
+  margin: auto;
+  font-size: 5rem;
 }
 @keyframes scale {
   0% {
@@ -232,18 +227,6 @@ body {
   &::-webkit-input-placeholder {
     color: $color-grey-dark-2;
   }
-}
-
-.pokedex_pokemon {
-  display: flex;
-  justify-content: center;
-  transform: scale(2);
-}
-
-.show_pokemon {
-  display: flex;
-  justify-content: center;
-  flex-direction: column-reverse;
 }
 
 @media (max-width: 768px) {

@@ -14,7 +14,7 @@ const Pokedex = (props: any): any => {
           <h5>{pokemon.pokemon}</h5>{' '}
           <img className='img_pokemon' src={pokemon.photo} alt='pokemon'></img>{' '}
           <div className='details'>
-            <h5>Abilitys: {pokemon.pokemon}</h5>
+            <h1>Abilitys: {pokemon.pokemon}</h1>
 
             {pokemon.abilities.map((e: any, i: any) => (
               <div

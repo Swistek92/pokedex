@@ -146,7 +146,7 @@ const PokemonApp: React.FC = () => {
           abilitesDescription.map(
             (e: any, i: any) =>
               i === hoverIndex && (
-                <div className={`${toggleHover && 'hover'}`}>
+                <div className={`showDescription  ${toggleHover && 'hover'}`}>
                   {
                     <>
                       <h5> {isShowing}</h5>
@@ -166,11 +166,11 @@ const PokemonApp: React.FC = () => {
         <div className='pokedex_pokemon'>
           <img className='search__poke' src={imgs} alt='pokemon'></img>
           <ul>
-            <h5> Abilities</h5>
+            <h2 className='search__poke__header'> Abilities</h2>
             {abilities &&
               abilities.map((e: any, i: any) => (
                 <div>
-                  <ul>
+                  <ul className='search__poke__description'>
                     <li
                       onMouseEnter={() => {
                         setToggleHover(false);
@@ -205,11 +205,10 @@ const PokemonApp: React.FC = () => {
         />
         <div className='imgs'></div>
         <div>{imgs && showPokemon()}</div>
+        {abilitesDescription.length > 1 && (
+          <div className='description'>{showDescription()}</div>
+        )}
       </div>
-
-      {abilitesDescription.length > 1 && (
-        <div className='description'>{showDescription()}</div>
-      )}
 
       <div className='pokedex'>
         <Pokedex pokemons={pokemons}></Pokedex>
