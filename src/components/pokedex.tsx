@@ -1,8 +1,11 @@
+import { type } from 'os';
 import React, { useState } from 'react';
 // import { pokemons } from './UserSearch';
 
-const Pokedex = (pokemons: any): any => {
-  const poki = pokemons.pokemons;
+const Pokedex = (props: any): any => {
+  const [toggleHover, setToggleHover] = useState(false);
+  const [hoverIndex, setHoverIndex] = useState();
+  const poki = props.pokemons.slice(1);
 
   const renderPokedex = () => {
     return poki.map((pokemon: any) => (
@@ -12,17 +15,34 @@ const Pokedex = (pokemons: any): any => {
           <img className='img_pokemon' src={pokemon.photo} alt='pokemon'></img>{' '}
           <div className='details'>
             <h5>Abilitys: {pokemon.pokemon}</h5>
-            {poki.map((e: any) => {
-              console.log(e);
-            })}
 
-            {/* {pokemon.abilities.map((e: any) => (
-              <p key={e.ability.name}> {e.ability.name}</p>
-            ))} */}
+            {pokemon.abilities.map((e: any, i: any) => (
+              <div
+                onMouseEnter={() => {
+                  setToggleHover(false);
+                }}
+                onMouseLeave={() => {
+                  setToggleHover(true);
+                }}
+                className={`abilitiName ${i + 1}`}
+              >
+                <h2 key={e.ability.name}>
+                  {i + 1} {e.ability.name}{' '}
+                </h2>
+              </div>
+            ))}
+            <h3>Abilities Descriptions:</h3>
+            {pokemon.abilitesDescription.map((e: any, i: any) => (
+              <div className={`abilitiDescription ${i}`}>
+                {e[1] === undefined ? null : (
+                  <>
+                    {i} {e[1].short_effect}
+                  </>
+                )}
+              </div>
+            ))}
           </div>
         </li>
-
-        <ul></ul>
       </div>
     ));
   };

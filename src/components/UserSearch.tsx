@@ -28,7 +28,7 @@ const UserSearch: React.FC = () => {
   const [abilitesDescription, setAbilitesDescription] = useState([{}]);
   const [pokemons, setPokemons] = useState([
     {
-      pokemon: 'magikarp',
+      pokemon: ' ',
       photo:
         'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/129.png',
       abilities: [
@@ -63,7 +63,7 @@ const UserSearch: React.FC = () => {
       'pokedex',
       JSON.stringify([
         {
-          pokemon: 'magikarp',
+          pokemon: ' ',
           photo:
             'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/129.png',
           abilities: [
@@ -90,24 +90,26 @@ const UserSearch: React.FC = () => {
     );
   }
 
-  const onChange = (e: string) => {
+  const onChange = async (e: string) => {
     setName(e);
-    console.log(pokemons);
 
-    api.get(`${e}`).then((res) => {
+    api.get(`${e}`).then(async (res) => {
       setAbilities(res.data.abilities);
       setImgs(res.data.sprites.front_default);
 
-      res.data.abilities.map((obj: any) => {
-        getAbility(obj.ability.url).then(
-          (e) =>
-            setAbilitesDescription([
-              ...abilitesDescription,
-              e.data.effect_entries,
-            ])
-          // (e) => console.log(e.data.effect_entries)
-        );
-      });
+      const entries = [];
+
+      for (const { ability } of res.data.abilities) {
+        const entry = await getAbility(ability.url);
+        entries.push(entry.data.effect_entries);
+      }
+      console.log(abilitesDescription);
+      if (abilitesDescription === [{}]) {
+        setAbilitesDescription([...entries]);
+      } else {
+        setAbilitesDescription([...abilitesDescription, ...entries]);
+      }
+      console.log(abilitesDescription);
     });
   };
 
@@ -142,14 +144,15 @@ const UserSearch: React.FC = () => {
       <div className='show_pokemon'>
         <div className='pokedex_pokemon'>
           <img className='search__poke' src={imgs} alt='pokemon'></img>
-          <h5> Abilities</h5>
 
           <ul>
-            {abilities.map((e: any) => (
-              <div>
-                <li key={e.ability.name}>{e.ability.name}</li>
-              </div>
-            ))}
+            <h5> Abilities</h5>
+            {abilities &&
+              abilities.map((e: any) => (
+                <div>
+                  <li key={e.ability.name}>{e.ability.name}</li>
+                </div>
+              ))}
           </ul>
         </div>
         <button
