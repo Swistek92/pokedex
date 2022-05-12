@@ -3,8 +3,10 @@ import React, { useState } from 'react';
 // import { pokemons } from './UserSearch';
 
 const Pokedex = (props: any): any => {
-  const [toggleHover, setToggleHover] = useState(false);
-  const [hoverIndex, setHoverIndex] = useState();
+  const [toggleHover, setToggleHover] = useState(true);
+  const [hoverIndex, setHoverIndex] = useState(1);
+  const [name, setName] = useState('');
+
   const poki = props.pokemons.slice(1);
 
   const renderPokedex = () => {
@@ -20,9 +22,12 @@ const Pokedex = (props: any): any => {
               <div
                 onMouseEnter={() => {
                   setToggleHover(false);
+                  setHoverIndex(i + 1);
+                  setName(e.ability.name);
                 }}
                 onMouseLeave={() => {
                   setToggleHover(true);
+                  console.log(toggleHover);
                 }}
                 className={`abilitiName ${i + 1}`}
               >
@@ -33,12 +38,14 @@ const Pokedex = (props: any): any => {
             ))}
             <h3>Abilities Descriptions:</h3>
             {pokemon.abilitesDescription.map((e: any, i: any) => (
-              <div className={`abilitiDescription ${i}`}>
-                {e[1] === undefined ? null : (
+              <div className={`abilitiDescription ${toggleHover && 'hover'}`}>
+                {i === hoverIndex ? (
                   <>
-                    {i} {e[1].short_effect}
+                    <p>
+                      <b>{name}</b> {e[1].short_effect}
+                    </p>
                   </>
-                )}
+                ) : null}
               </div>
             ))}
           </div>

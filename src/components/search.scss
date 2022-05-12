@@ -125,6 +125,14 @@ body {
 .pokedex_container:hover {
 }
 
+.abilitiDescription {
+  // font-size: 15px;
+  display: block;
+}
+.hover {
+  display: none;
+}
+
 @keyframes scale {
   0% {
     transform: scale(1);
