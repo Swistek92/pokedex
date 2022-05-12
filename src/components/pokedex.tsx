@@ -1,7 +1,5 @@
-import { type } from 'os';
 import React, { useState } from 'react';
-// import { pokemons } from './UserSearch';
-
+import './pokedex.scss';
 const Pokedex = (props: any): any => {
   const [toggleHover, setToggleHover] = useState(true);
   const [hoverIndex, setHoverIndex] = useState(1);
@@ -36,16 +34,16 @@ const Pokedex = (props: any): any => {
                 </h2>
               </div>
             ))}
-            <h3>Abilities Descriptions:</h3>
+            <h3>Abilities Description:</h3>
             {pokemon.abilitesDescription.map((e: any, i: any) => (
               <div className={`abilitiDescription ${toggleHover && 'hover'}`}>
-                {i === hoverIndex ? (
+                {i === hoverIndex && (
                   <>
                     <p>
                       <b>{name}</b> {e[1].short_effect}
                     </p>
                   </>
-                ) : null}
+                )}
               </div>
             ))}
           </div>

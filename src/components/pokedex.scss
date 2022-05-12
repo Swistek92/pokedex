@@ -1,0 +1,40 @@
+.pokedex {
+  background-color: #bada55;
+  position: absolute;
+  max-width: 40%;
+  top: 0;
+  right: 0;
+  padding: 50px;
+  height: 85vh;
+  max-height: 85vh;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-left: solid black 5px;
+
+  .pokemon_element {
+    cursor: pointer;
+    list-style: none;
+    text-transform: capitalize;
+    font-size: 20px;
+  }
+  .pokemon_element:hover {
+    .img_pokemon {
+      display: block;
+      height: fit-content;
+      animation: scale 1s ease-in-out;
+    }
+
+    .details {
+      display: block;
+      border: 5px solid red;
+      border-radius: 10px;
+    }
+  }
+
+  .img_pokemon {
+    display: none;
+  }
+  .details {
+    display: none;
+  }
+}

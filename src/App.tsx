@@ -2,11 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 // import { Pokedex } from './state/pokedex';
-import { UserSearch } from './components/UserSearch';
+import { PokemonApp } from './components/PokemonApp';
 const App = () => {
   return (
     <div>
-      <UserSearch />
+      <PokemonApp />
     </div>
   );
 };
